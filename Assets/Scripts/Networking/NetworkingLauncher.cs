@@ -166,14 +166,11 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.LogFormat("PhotonNetwork : Loading Level");
-            loadingCanvas.SetActive(true);
-            roomMenuObjects.canvas.SetActive(false);
-            PhotonNetwork.LoadLevel("Level");
-            SceneManager.LoadSceneAsync("LevelUI", LoadSceneMode.Additive);
-        }
+        if (PhotonNetwork.IsMasterClient) PhotonNetwork.LoadLevel("Level");
+        Debug.LogFormat("PhotonNetwork : Loading Level");
+        loadingCanvas.SetActive(true);
+        roomMenuObjects.canvas.SetActive(false);
+        SceneManager.LoadSceneAsync("LevelUI", LoadSceneMode.Additive);
     }
 
     public override void OnLeftRoom()

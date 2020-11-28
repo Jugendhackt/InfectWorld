@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -24,8 +25,11 @@ public class PlayerScript : MonoBehaviour
     public int jumps;
 
     private int _mCurrentJumps = 0;
+
+    private static readonly int Color = Shader.PropertyToID("_Color");
+
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -47,6 +51,7 @@ public class PlayerScript : MonoBehaviour
         _input = new InputMaster();
         _input.Player.Jump.performed += _ => _mJump = true;
         _input.Player.Jump.canceled += _ => _mJump = false;
+        GetComponent<Renderer>().material.SetColor(Color, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f));
     }
 
 
@@ -96,7 +101,6 @@ public class PlayerScript : MonoBehaviour
     {
         var cc = GetComponent<CharacterController>();
         var tf = transform;
-        print(_mCheckpoint);
         if (tf.position.y < deathYPoint)
             tf.position = _mCheckpoint;
     }

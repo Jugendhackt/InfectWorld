@@ -34,6 +34,7 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
     }
 
     public GameObject loadingCanvas;
+    public GameObject playerPrefab;
 
     // Store the PlayerPref Key to avoid typos
     private const string PlayerNamePrefKey = "PlayerName";
@@ -102,8 +103,13 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player other)
     {
         Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
-        roomMenuObjects.textField.text += $"{other.NickName} joined";
-        
+        UpdatePlayerList();
+    }
+
+    public override void OnPlayerLeftRoom(Player other)
+    {
+        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); // not seen if you're the player connecting
+        UpdatePlayerList();
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -166,7 +172,9 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
             loadingCanvas.SetActive(true);
             roomMenuObjects.canvas.SetActive(false);
             PhotonNetwork.LoadLevel("Level");
-            SceneManager.LoadSceneAsync("LevelUI", LoadSceneMode.Additive);
+            var loadSceneAsync = SceneManager.LoadSceneAsync("LevelUI", LoadSceneMode.Additive);
+            loadSceneAsync.allowSceneActivation = true;
+            PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0f,5f,0f), Quaternion.identity, 0);
         }
     }
 

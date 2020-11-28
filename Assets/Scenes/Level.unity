@@ -26449,7 +26449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5469415092245096913, guid: 98b78809ccd40604cbfe243d04129b3b, type: 3}
-  range: 4
+  range: 2
 --- !u!1 &1552690945
 GameObject:
   m_ObjectHideFlags: 0

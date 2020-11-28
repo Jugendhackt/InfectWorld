@@ -26,6 +26,7 @@ public class NetworkPlayer : MonoBehaviourPun
     private void RPC_SelectPatient()
     {
         _playerState = PlayerState.patient;
+        FindObjectOfType<LevelUIScript>().ChangePatientView();
         Debug.Log($"Du bist {_playerState}!");
     }
 }

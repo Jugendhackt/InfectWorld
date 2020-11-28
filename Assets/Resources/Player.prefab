@@ -253,8 +253,8 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  observableSearch: 0
-  Synchronization: 0
+  observableSearch: 2
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 5243807410696779901}
@@ -274,7 +274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 5469415091541609431}
-  playerState: 0
 --- !u!114 &5243807410696779901
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,14 +16,16 @@ public class NetworkPlayer : MonoBehaviourPun
             camera.SetActive(true);
         }
 
-        if (PhotonNetwork.IsMasterClient)
-            photonView.RPC("RPC_SelectPatient", RpcTarget.All, Random.Range(0, PhotonNetwork.PlayerList.Length));
+
+        if (!PhotonNetwork.IsMasterClient) return;
+        var randomPlayer = Random.Range(0, PhotonNetwork.PlayerList.Length);
+        photonView.RPC("RPC_SelectPatient", PhotonNetwork.CurrentRoom.GetPlayer(randomPlayer));
     }
 
     [PunRPC]
-    private void RPC_SelectPatient(int patient)
+    private void RPC_SelectPatient()
     {
-        if (photonView.ViewID == patient) _playerState = PlayerState.patient;
+        _playerState = PlayerState.patient;
         Debug.Log($"{photonView.name} ist {_playerState}!");
     }
 }

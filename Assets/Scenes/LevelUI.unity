@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 432954534}
   - component: {fileID: 432954533}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: PatientView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ffa749551e41f4a6b07e6d34f23440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patientView: {fileID: 218893852}
+  patientView: {fileID: 432954531}
 --- !u!1 &1664447924
 GameObject:
   m_ObjectHideFlags: 0

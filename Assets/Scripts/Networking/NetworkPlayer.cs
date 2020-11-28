@@ -6,9 +6,10 @@ using Random = UnityEngine.Random;
 public class NetworkPlayer : MonoBehaviourPun
 {
     public GameObject camera;
-    public PlayerState playerState = PlayerState.life;
+    private PlayerState _playerState;
     private void Start()
     {
+        _playerState = PlayerState.life;
         if (photonView.IsMine)
         {
             GetComponent<PlayerMovement>().enabled = true;
@@ -16,15 +17,13 @@ public class NetworkPlayer : MonoBehaviourPun
         }
 
         if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("SelectPatient", RpcTarget.All, Random.Range(0, PhotonNetwork.PlayerList.Length));
-        }
+            photonView.RPC("RPC_SelectPatient", RpcTarget.All, Random.Range(0, PhotonNetwork.PlayerList.Length));
     }
 
     [PunRPC]
-    private void SelectPatient(int patient)
+    private void RPC_SelectPatient(int patient)
     {
-        if (photonView.ViewID == patient) playerState = PlayerState.patient;
-        Debug.Log($"{photonView.name} ist {playerState}!");
+        if (photonView.ViewID == patient) _playerState = PlayerState.patient;
+        Debug.Log($"{photonView.name} ist {_playerState}!");
     }
 }

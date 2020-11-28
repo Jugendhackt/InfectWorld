@@ -257,7 +257,7 @@ MonoBehaviour:
   Synchronization: 0
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 5243807410696779901}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 5469415091541609431}
+  playerState: 0
 --- !u!114 &5243807410696779901
 MonoBehaviour:
   m_ObjectHideFlags: 0

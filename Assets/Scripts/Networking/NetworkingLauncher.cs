@@ -156,6 +156,7 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
         Debug.Log("Connecting to master...");
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.GameVersion = GameVersion;
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnConnectedToMaster()

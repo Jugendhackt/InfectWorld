@@ -3221,7 +3221,6 @@ MonoBehaviour:
     canvas: {fileID: 1960631704}
     codeField: {fileID: 797976170}
   loadingCanvas: {fileID: 226984688}
-  playerPrefab: {fileID: 5469415092245096913, guid: 98b78809ccd40604cbfe243d04129b3b, type: 3}
 --- !u!114 &1210771112
 MonoBehaviour:
   m_ObjectHideFlags: 0

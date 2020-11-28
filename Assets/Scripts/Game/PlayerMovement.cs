@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private InputMaster _input;
     public GameObject cameraObject;
@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
 
     public int jumps;
 
-    private int _mCurrentJumps = 0;
+    private int _mCurrentJumps;
 
     private static readonly int Color = Shader.PropertyToID("_Color");
 

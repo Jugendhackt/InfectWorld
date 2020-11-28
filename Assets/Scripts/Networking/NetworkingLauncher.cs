@@ -34,7 +34,6 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
     }
 
     public GameObject loadingCanvas;
-    public GameObject playerPrefab;
 
     // Store the PlayerPref Key to avoid typos
     private const string PlayerNamePrefKey = "PlayerName";
@@ -172,9 +171,7 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
             loadingCanvas.SetActive(true);
             roomMenuObjects.canvas.SetActive(false);
             PhotonNetwork.LoadLevel("Level");
-            var loadSceneAsync = SceneManager.LoadSceneAsync("LevelUI", LoadSceneMode.Additive);
-            loadSceneAsync.allowSceneActivation = true;
-            PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0f,5f,0f), Quaternion.identity, 0);
+            SceneManager.LoadSceneAsync("LevelUI", LoadSceneMode.Additive);
         }
     }
 

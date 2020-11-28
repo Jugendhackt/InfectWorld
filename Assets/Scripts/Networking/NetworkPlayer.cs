@@ -17,7 +17,7 @@ public class NetworkPlayer : MonoBehaviourPun
         }
 
 
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (!PhotonNetwork.IsMasterClient || !photonView.IsMine) return;
         var randomPlayer = Random.Range(0, PhotonNetwork.PlayerList.Length);
         photonView.RPC("RPC_SelectPatient", PhotonNetwork.CurrentRoom.GetPlayer(randomPlayer));
     }

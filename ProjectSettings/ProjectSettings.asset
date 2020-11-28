@@ -127,7 +127,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -642,8 +643,8 @@ PlayerSettings:
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
     Analytics: 1
-    Build: 0
-    Collab: 0
+    Build: 1
+    Collab: 1
     Game Performance: 0
     Purchasing: 0
     Unity Ads: 0
@@ -661,7 +662,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: e2ac2629-d085-4de0-ba4e-204cf7e3a29a
   framebufferDepthMemorylessMode: 0
-  projectName: PaperWorld
+  projectName: InfectWorld
   organizationId: codedoctorde
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 1

@@ -9,7 +9,7 @@ public class NetworkPlayer : MonoBehaviour
             if (GetComponent<PhotonView>().IsMine)
             {
                 GetComponent<PlayerMovement>().enabled = true;
-                GetComponentInChildren<Camera>().gameObject.SetActive(false);
+                GetComponentInChildren<Camera>().gameObject.SetActive(true);
             }
         }
     }

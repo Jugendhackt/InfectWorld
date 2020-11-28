@@ -14,5 +14,7 @@ public class LevelScript : MonoBehaviour
         var y = Random.Range(position.y - range, position.y + range);
         var z = Random.Range(position.z - range, position.z + range);
         PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(x, y, z), Quaternion.identity, 0);
+        
+        var players = PhotonNetwork.PlayerList;
     }
 }

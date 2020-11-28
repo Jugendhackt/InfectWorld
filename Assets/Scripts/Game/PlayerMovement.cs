@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         _input.Player.Jump.performed += _ => _mJump = true;
         _input.Player.Jump.canceled += _ => _mJump = false;
         var color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-        GetComponent<PhotonView>().RPC("RPC_SendColor", RpcTarget.All, new Vector3(color.r, color.g, color.b));
+        GetComponent<PhotonView>().RPC("RPC_SendColor", RpcTarget.All, GetComponent<PhotonView>().ViewID, new Vector3(color.r, color.g, color.b));
     }
 
 
@@ -108,8 +108,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     [PunRPC]
-    private void RPC_SendColor(Vector3 randomColor)
+    private void RPC_SendColor(int id, Vector3 randomColor)
     {
-        GetComponent<Renderer>().material.SetColor(Color, new Color(randomColor.x, randomColor.y, randomColor.z));
+        if(GetComponent<PhotonView>().ViewID == id)
+            GetComponent<Renderer>().material.SetColor(Color, new Color(randomColor.x, randomColor.y, randomColor.z));
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class LevelScript : MonoBehaviour
@@ -9,6 +10,9 @@ public class LevelScript : MonoBehaviour
     public int range = 4;
     private void Start()
     {
+        Debug.LogFormat("PhotonNetwork : Loading Level");
+        SceneManager.LoadScene("LevelUI", LoadSceneMode.Additive);
+        
         var position = transform.position;
         var x = Random.Range(position.x - range, position.x + range);
         var y = Random.Range(position.y - range, position.y + range);

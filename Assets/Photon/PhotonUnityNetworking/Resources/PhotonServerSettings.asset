@@ -41,6 +41,9 @@ MonoBehaviour:
   - RPC_SendColor
   - SelectPatient
   - RPC_SelectPatient
+  - RPC_SelectPatieLnt
+  - RPC_SelectPatieLnt
+  - RPC_Start
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

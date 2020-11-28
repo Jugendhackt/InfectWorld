@@ -23,7 +23,7 @@ public class NetworkPlayer : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RPC_SelectPatieLnt()
+    private void RPC_SelectPatient()
     {
         _playerState = PlayerState.patient;
         FindObjectOfType<LevelUIScript>().ChangePatientView();

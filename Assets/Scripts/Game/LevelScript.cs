@@ -7,11 +7,12 @@ using Random = UnityEngine.Random;
 public class LevelScript : MonoBehaviour
 {
     public GameObject playerPrefab;
+    public LevelUIScript levelUIScript;
     public int range = 4;
     private void Start()
     {
         Debug.LogFormat("PhotonNetwork : Loading Level");
-        SceneManager.LoadScene("LevelUI", LoadSceneMode.Additive);
+        Instantiate(levelUIScript.gameObject);
         
         var position = transform.position;
         var x = Random.Range(position.x - range, position.x + range);

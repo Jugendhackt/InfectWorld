@@ -6,6 +6,6 @@ public class LevelUIScript : MonoBehaviour
         
         public void ChangePatientView()
         { 
-                patientView.SetActive(true);    
+                patientView.SetActive(true);
         }
 }

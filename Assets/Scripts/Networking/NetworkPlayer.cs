@@ -26,6 +26,6 @@ public class NetworkPlayer : MonoBehaviourPun
     private void RPC_SelectPatient()
     {
         _playerState = PlayerState.patient;
-        Debug.Log($"{photonView.name} ist {_playerState}!");
+        Debug.Log($"Du bist {_playerState}!");
     }
 }

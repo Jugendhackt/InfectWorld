@@ -15,10 +15,6 @@ public class LevelUIScript : MonoBehaviour
     public NetworkPlayer currentPlayer;
     public GameObject patientTitle;
 
-    private void Awake()
-    {
-    }
-
     public IEnumerator ChangePatientView()
     {
         patientView.SetActive(true);

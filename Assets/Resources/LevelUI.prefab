@@ -181,7 +181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3498697803173723447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -350,6 +350,7 @@ MonoBehaviour:
   infectedProgressText: {fileID: 8675339984753216110}
   pauseCanvas: {fileID: 8675339986141197013}
   currentPlayer: {fileID: 0}
+  patientTitle: {fileID: 5169392191286738603}
 --- !u!1 &8675339984482726857
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,21 +3,38 @@ using System.Collections;
 using Bolt;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityTemplateProjects;
 using Random = UnityEngine.Random;
 
 public class NetworkPlayer : MonoBehaviourPun
 {
-    public GameObject camera;
+    public GameObject playerCamera;
     private PlayerState _playerState;
     public int infectRange = 3;
     public int infectTime = 10;
+    private LevelUIScript _ui;
+    private bool _movement;
+
+    public bool movement
+    {
+        get => _movement;
+        set
+        {
+            _movement = value;
+            GetComponent<PlayerMovement>().enabled = value;
+        }
+    }
+
     private void Start()
     {
         _playerState = PlayerState.life;
         if (photonView.IsMine)
         {
-            GetComponent<PlayerMovement>().enabled = true;
-            camera.SetActive(true);
+            playerCamera.SetActive(true);
+            movement = true;
+            _ui = FindObjectOfType<LevelUIScript>();
+            _ui.currentPlayer = this;
         }
 
 
@@ -27,7 +44,8 @@ public class NetworkPlayer : MonoBehaviourPun
     }
 
     private GameObject _currentNearestPlayer;
-    private float _currentTimeInfected = 0;
+    private float _currentTimeInfected;
+    
 
     private void FixedUpdate()
     {
@@ -53,13 +71,11 @@ public class NetworkPlayer : MonoBehaviourPun
             _currentTimeInfected += Time.fixedDeltaTime;
 
         var percent = _currentTimeInfected / infectTime;
-        FindObjectOfType<LevelUIScript>().ChangeInfectedTime(percent);
-        if (percent > 1f)
-        {
-            // Infiziere andere!
-            _currentTimeInfected = 0;
-            _currentNearestPlayer = null;
-        }
+        _ui.ChangeInfectedTime(percent);
+        if (!(percent > 1f)) return;
+        // Infiziere andere!
+        _currentTimeInfected = 0;
+        _currentNearestPlayer = null;
     }
 
     [PunRPC]

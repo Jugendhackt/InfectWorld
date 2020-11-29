@@ -147,6 +147,8 @@ MonoBehaviour:
   patientView: {fileID: 8675339986506588194}
   infectedProgress: {fileID: 8675339986309345951}
   infectedProgressText: {fileID: 8675339984753216110}
+  pauseCanvas: {fileID: 8675339986141197013}
+  currentPlayer: {fileID: 0}
 --- !u!1 &8675339984482726857
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,8 +973,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -267.3269}
-  m_SizeDelta: {x: 500, y: 40}
+  m_AnchoredPosition: {x: 500, y: -305}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8675339985137818827
 CanvasRenderer:
@@ -1091,8 +1093,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -167.32692}
-  m_SizeDelta: {x: 500, y: 40}
+  m_AnchoredPosition: {x: 500, y: -185}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8675339985620018864
 CanvasRenderer:
@@ -1213,8 +1215,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8675339986141197013}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1476.5903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 8675339984528247092}
@@ -1224,7 +1226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -208.61975, y: 213.12355}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!223 &8675339986141197014
@@ -1609,7 +1611,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 400}
+  m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8675339986423880693
 MonoBehaviour:
@@ -1671,8 +1673,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -68.66346}
-  m_SizeDelta: {x: 500, y: 137.32692}
+  m_AnchoredPosition: {x: 500, y: -75}
+  m_SizeDelta: {x: 1000, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8675339986460186800
 CanvasRenderer:
@@ -1884,8 +1886,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -217.32692}
-  m_SizeDelta: {x: 500, y: 40}
+  m_AnchoredPosition: {x: 500, y: -245}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8675339986578294120
 CanvasRenderer:

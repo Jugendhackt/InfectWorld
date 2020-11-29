@@ -9,7 +9,7 @@ public class LevelScript : MonoBehaviour
     public GameObject playerPrefab;
     public LevelUIScript levelUIScript;
     public int range = 4;
-    private void Start()
+    private void Awake()
     {
         Debug.LogFormat("PhotonNetwork : Loading Level");
         Instantiate(levelUIScript.gameObject);

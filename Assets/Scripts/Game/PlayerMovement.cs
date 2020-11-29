@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         _input = new InputMaster();
         _input.Player.Jump.performed += _ => _mJump = true;
         _input.Player.Jump.canceled += _ => _mJump = false;
+        _input.Player.Pause.performed += _ => FindObjectOfType<LevelUIScript>().TogglePause();
         var color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
         if(GetComponent<PhotonView>().IsMine)
             GetComponent<PhotonView>().RPC("RPC_SendColor", RpcTarget.All, GetComponent<PhotonView>().Controller.ActorNumber, new Vector3(color.r, color.g, color.b));
@@ -102,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        var cc = GetComponent<CharacterController>();
         var tf = transform;
         if (tf.position.y < deathYPoint)
             tf.position = _mCheckpoint;

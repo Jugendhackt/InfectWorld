@@ -185,7 +185,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -196,7 +196,7 @@
                     "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false

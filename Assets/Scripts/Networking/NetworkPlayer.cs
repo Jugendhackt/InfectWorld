@@ -46,8 +46,10 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
     {
         if (!photonView.IsMine)
             return;
+        print("1");
         if (playerState != PlayerState.patient)
             return;
+        print("2");
         if (_currentNearestPlayer == null ||
             Vector3.Distance(transform.position, _currentNearestPlayer.transform.position) > infectRange)
         {
@@ -71,13 +73,17 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
         }
         else
             _currentTimeInfected += Time.fixedDeltaTime;
+        print("3");
 
         var percent = _currentTimeInfected / infectTime;
+        print(percent + "%");
         _ui.ChangeInfectedTime(percent);
         if (percent < 1f) return;
+        print("4");
         // Infiziere andere!
         if (!(_currentNearestPlayer is null))
         {
+            print("5");
             photonView.RPC("RPC_SelectPatient",
                 PhotonNetwork.CurrentRoom.GetPlayer(_currentNearestPlayer.GetComponent<PhotonView>().Controller
                     .ActorNumber));

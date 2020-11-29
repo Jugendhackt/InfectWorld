@@ -11,7 +11,7 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
     private GameObject _currentNearestPlayer;
     private float _currentTimeInfected;
     private bool _movement;
-    public PlayerState playerState;
+    public PlayerState playerState = PlayerState.life;
     private LevelUIScript _ui;
 
     public bool movement
@@ -26,7 +26,7 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        playerState = PlayerState.life;
+        playerState = ;
         if (photonView.IsMine)
         {
             playerCamera.SetActive(true);

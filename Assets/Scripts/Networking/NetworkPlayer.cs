@@ -49,6 +49,8 @@ public class NetworkPlayer : MonoBehaviourPun
 
     private void FixedUpdate()
     {
+        if (!photonView.IsMine)
+            return;
         if (_currentNearestPlayer == null || Vector3.Distance(transform.position, _currentNearestPlayer.transform.position) > infectRange)
         {
             GameObject bestTarget = null;
@@ -71,6 +73,7 @@ public class NetworkPlayer : MonoBehaviourPun
             _currentTimeInfected += Time.fixedDeltaTime;
 
         var percent = _currentTimeInfected / infectTime;
+        print(_ui);
         _ui.ChangeInfectedTime(percent);
         if (!(percent > 1f)) return;
         // Infiziere andere!

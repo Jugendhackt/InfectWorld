@@ -1,6 +1,8 @@
 ﻿using System;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelUIScript : MonoBehaviour
@@ -15,7 +17,6 @@ public class LevelUIScript : MonoBehaviour
     private void Awake()
     {
         _input = new InputMaster();
-        print("!!!");
     }
 
     public void ChangePatientView()
@@ -25,17 +26,21 @@ public class LevelUIScript : MonoBehaviour
 
     public void TogglePause()
     {
-        print("test");
         var current = currentPlayer.movement;
         currentPlayer.movement = !current;
         pauseCanvas.SetActive(current);
         Cursor.visible = current;
-        Cursor.lockState = current ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.lockState = current ? CursorLockMode.None: CursorLockMode.Locked;
     }
 
     public void ChangeInfectedTime(float timePercent)
     {
         infectedProgress.fillAmount = timePercent;
         infectedProgressText.text = $"{Math.Round(timePercent * 100)}% infected";
+    }
+
+    public void LeaveGame()
+    {
+        PhotonNetwork.LeaveRoom();
     }
 }

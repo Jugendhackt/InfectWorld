@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-    public class LoadingScreen : MonoBehaviour
-    {
-        
-    }
+public class LoadingScreen : MonoBehaviour
+{
+}

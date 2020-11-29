@@ -1,4 +1,6 @@
 ﻿public enum PlayerState
 {
-    dead, life, patient        
+    dead,
+    life,
+    patient
 }

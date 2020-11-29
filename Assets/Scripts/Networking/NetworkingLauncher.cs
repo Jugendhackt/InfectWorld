@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO.Pipes;
 using System.Linq;
 using Photon.Pun;
 using Photon.Realtime;
@@ -14,38 +12,25 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
 {
     private const string GameVersion = "1";
 
+    // Store the PlayerPref Key to avoid typos
+    private const string PlayerNamePrefKey = "PlayerName";
+    private static readonly Random _random = new Random();
+
     public MainMenuObjects mainMenuObjects;
 
-    [Serializable]
-    public class MainMenuObjects
-    {
-        public TMP_InputField nameField;
-        public TMP_InputField codeField;
-        public GameObject canvas;
-    }
-
     public RoomMenuObjects roomMenuObjects;
-    [Serializable]
-    public class RoomMenuObjects
-    {
-        public TMP_Text textField;
-        public GameObject canvas;
-        public TMP_Text codeField;
-    }
 
     public GameObject loadingCanvas;
 
-    // Store the PlayerPref Key to avoid typos
-    private const string PlayerNamePrefKey = "PlayerName";
-    
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         if (PlayerPrefs.HasKey(PlayerNamePrefKey))
         {
             mainMenuObjects.nameField.text = PlayerPrefs.GetString(PlayerNamePrefKey);
             UpdateNickname();
         }
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -53,9 +38,8 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
     public void UpdateNickname()
@@ -72,7 +56,7 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
             return;
         PhotonNetwork.JoinRoom(code);
     }
-    private static Random _random = new Random();
+
     public static string RandomString(int length)
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -99,6 +83,7 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
         roomMenuObjects.codeField.text = PhotonNetwork.CurrentRoom.Name;
         UpdatePlayerList();
     }
+
     public override void OnPlayerEnteredRoom(Player other)
     {
         Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
@@ -113,7 +98,8 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
+        Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}",
+            cause);
         StartCoroutine(Reconnect());
     }
 
@@ -129,6 +115,7 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
                 value += " (You)";
             value += "\r\n";
         }
+
         roomMenuObjects.textField.text = value;
     }
 
@@ -175,5 +162,21 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         SceneManager.UnloadSceneAsync("Level");
+    }
+
+    [Serializable]
+    public class MainMenuObjects
+    {
+        public TMP_InputField nameField;
+        public TMP_InputField codeField;
+        public GameObject canvas;
+    }
+
+    [Serializable]
+    public class RoomMenuObjects
+    {
+        public TMP_Text textField;
+        public GameObject canvas;
+        public TMP_Text codeField;
     }
 }

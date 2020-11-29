@@ -26,7 +26,6 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        playerState = ;
         if (photonView.IsMine)
         {
             playerCamera.SetActive(true);

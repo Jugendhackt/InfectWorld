@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
@@ -12,14 +13,18 @@ public class LevelUIScript : MonoBehaviour
     public TMP_Text infectedProgressText;
     public GameObject pauseCanvas;
     public NetworkPlayer currentPlayer;
+    public GameObject patientTitle;
 
     private void Awake()
     {
     }
 
-    public void ChangePatientView()
+    public IEnumerator ChangePatientView()
     {
         patientView.SetActive(true);
+        patientTitle.SetActive(true);
+        yield return new WaitForSeconds(3);
+        patientTitle.SetActive(false);
     }
 
     public void TogglePause()

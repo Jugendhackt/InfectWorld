@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -96,8 +97,8 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
     private void RPC_SelectPatient()
     {
         playerState = PlayerState.patient;
-        FindObjectOfType<LevelUIScript>().ChangePatientView();
         Debug.Log($"Du bist {playerState}!");
+        StartCoroutine(FindObjectOfType<LevelUIScript>().ChangePatientView());
     }
 
     public override void OnLeftRoom()

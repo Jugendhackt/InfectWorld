@@ -44,7 +44,9 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
 
     private void FixedUpdate()
     {
-        if (!photonView.IsMine || playerState != PlayerState.patient)
+        if (!photonView.IsMine)
+            return;
+        if (playerState != PlayerState.patient)
             return;
         if (_currentNearestPlayer == null ||
             Vector3.Distance(transform.position, _currentNearestPlayer.transform.position) > infectRange)
@@ -72,7 +74,7 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
 
         var percent = _currentTimeInfected / infectTime;
         _ui.ChangeInfectedTime(percent);
-        if (!(percent > 1f)) return;
+        if (percent < 1f) return;
         // Infiziere andere!
         if (!(_currentNearestPlayer is null))
         {

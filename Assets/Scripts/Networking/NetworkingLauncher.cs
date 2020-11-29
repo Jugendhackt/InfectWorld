@@ -6,6 +6,7 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Random = System.Random;
 
 public class NetworkingLauncher : MonoBehaviourPunCallbacks
@@ -33,13 +34,10 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        mainMenuObjects.canvas.SetActive(false);
+        loadingCanvas.SetActive(true);
 
         Connect();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
     }
 
     public void UpdateNickname()
@@ -57,7 +55,7 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(code);
     }
 
-    public static string RandomString(int length)
+    private static string RandomString(int length)
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         return new string(Enumerable.Repeat(chars, length)
@@ -82,6 +80,7 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
         roomMenuObjects.canvas.SetActive(true);
         roomMenuObjects.codeField.text = PhotonNetwork.CurrentRoom.Name;
         UpdatePlayerList();
+        roomMenuObjects.startButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public override void OnPlayerEnteredRoom(Player other)
@@ -149,6 +148,8 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to master!");
+        mainMenuObjects.canvas.SetActive(true);
+        loadingCanvas.SetActive(false);
     }
 
     public void StartGame()
@@ -157,11 +158,6 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("Level");
         loadingCanvas.SetActive(true);
         roomMenuObjects.canvas.SetActive(false);
-    }
-
-    public override void OnLeftRoom()
-    {
-        SceneManager.UnloadSceneAsync("Level");
     }
 
     [Serializable]
@@ -178,5 +174,6 @@ public class NetworkingLauncher : MonoBehaviourPunCallbacks
         public TMP_Text textField;
         public GameObject canvas;
         public TMP_Text codeField;
+        public GameObject startButton;
     }
 }

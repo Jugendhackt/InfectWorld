@@ -1,7 +1,8 @@
 ﻿using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class NetworkPlayer : MonoBehaviourPun
+public class NetworkPlayer : MonoBehaviourPunCallbacks
 {
     public GameObject playerCamera;
     public int infectRange = 3;
@@ -10,7 +11,7 @@ public class NetworkPlayer : MonoBehaviourPun
     private GameObject _currentNearestPlayer;
     private float _currentTimeInfected;
     private bool _movement;
-    private PlayerState _playerState;
+    public PlayerState playerState;
     private LevelUIScript _ui;
 
     public bool movement
@@ -25,7 +26,7 @@ public class NetworkPlayer : MonoBehaviourPun
 
     private void Start()
     {
-        _playerState = PlayerState.life;
+        playerState = PlayerState.life;
         if (photonView.IsMine)
         {
             playerCamera.SetActive(true);
@@ -43,7 +44,7 @@ public class NetworkPlayer : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        if (!photonView.IsMine || _playerState != PlayerState.patient)
+        if (!photonView.IsMine || playerState != PlayerState.patient)
             return;
         if (_currentNearestPlayer == null ||
             Vector3.Distance(transform.position, _currentNearestPlayer.transform.position) > infectRange)
@@ -54,6 +55,8 @@ public class NetworkPlayer : MonoBehaviourPun
             // Keine Patienten!
             foreach (var potentialTarget in GameObject.FindGameObjectsWithTag("player"))
             {
+                if (potentialTarget.GetComponent<NetworkPlayer>().playerState == PlayerState.patient)
+                    continue;
                 var directionToTarget = potentialTarget.transform.position - currentPosition;
                 var dSqrToTarget = directionToTarget.sqrMagnitude;
                 if (!(dSqrToTarget < closestDistanceSqr)) continue;
@@ -71,15 +74,27 @@ public class NetworkPlayer : MonoBehaviourPun
         _ui.ChangeInfectedTime(percent);
         if (!(percent > 1f)) return;
         // Infiziere andere!
-        _currentTimeInfected = 0;
+        if (!(_currentNearestPlayer is null))
+        {
+            photonView.RPC("RPC_SelectPatient",
+                PhotonNetwork.CurrentRoom.GetPlayer(_currentNearestPlayer.GetComponent<PhotonView>().Controller
+                    .ActorNumber));
+            _currentTimeInfected = 0;
+        }
+
         _currentNearestPlayer = null;
     }
 
     [PunRPC]
     private void RPC_SelectPatient()
     {
-        _playerState = PlayerState.patient;
+        playerState = PlayerState.patient;
         FindObjectOfType<LevelUIScript>().ChangePatientView();
-        Debug.Log($"Du bist {_playerState}!");
+        Debug.Log($"Du bist {playerState}!");
+    }
+
+    public override void OnLeftRoom()
+    {
+        SceneManager.UnloadSceneAsync("Level");
     }
 }

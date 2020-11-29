@@ -12,11 +12,9 @@ public class LevelUIScript : MonoBehaviour
     public TMP_Text infectedProgressText;
     public GameObject pauseCanvas;
     public NetworkPlayer currentPlayer;
-    private InputMaster _input;
 
     private void Awake()
     {
-        _input = new InputMaster();
     }
 
     public void ChangePatientView()

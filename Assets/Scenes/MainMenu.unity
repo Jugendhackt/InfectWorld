@@ -3059,6 +3059,7 @@ MonoBehaviour:
     textField: {fileID: 1907819033}
     canvas: {fileID: 1960631704}
     codeField: {fileID: 797976170}
+    startButton: {fileID: 233934623}
   loadingCanvas: {fileID: 226984688}
 --- !u!114 &1210771112
 MonoBehaviour:

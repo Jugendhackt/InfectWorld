@@ -14,6 +14,15 @@ public class LevelUIScript : MonoBehaviour
     public GameObject pauseCanvas;
     public NetworkPlayer currentPlayer;
     public GameObject patientTitle;
+    public MeetingMenuObjects meetingMenuObjects;
+
+    public class MeetingMenuObjects
+    {
+        public GameObject canvas;
+        public GameObject player;
+        public GameObject playerList;
+        public TMP_Text countdownText;
+    }
 
     public IEnumerator ChangePatientView()
     {

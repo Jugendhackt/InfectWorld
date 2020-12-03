@@ -19,6 +19,3 @@ func _ready():
 func _on_QuitButton_pressed():
 	get_tree().quit()
 
-
-func _on_SourceButton_pressed():
-	OS.shell_open("https://github.com/Jugendhackt/InfectWorld")

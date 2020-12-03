@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/title.tres" type="DynamicFont" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -141.44
+margin_top = 18.6633
+margin_right = 142.56
+margin_bottom = 67.6633
+custom_fonts/font = ExtResource( 1 )
+text = "Options"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

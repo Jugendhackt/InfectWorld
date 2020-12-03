@@ -1,0 +1,13 @@
+,en,de
+play,Play,Spielen
+back_mainmenu,Back to main menu,Zurück zum Hauptmenü
+create_game,Create game,Spiel erstellen
+join_game,Join game,Spiel betreten
+options,Options,Optionen
+quit,Quit,Beenden
+host_name,Host name,Host-Name
+host_name_hint,"localhost, example.com","localhost, example.com"
+host_port,Host port,Host-Port
+host_port_hint,Default: 23154,Standard: 23154
+news,News,Neuigkeiten
+source,Source code,Quellcode
